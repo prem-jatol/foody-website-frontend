@@ -1,120 +1,80 @@
 import React, { useState } from "react";
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
-const FoodCategory = ({ itemWidth = 320, gap = 20 }) => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+const FoodCategory = () => {
+  const [boxPosition, setBoxPosition] = useState(0);
+  // const [stop, setStop] = useState(false);
 
-  const foodCartArray = [
-    {
-      name: "North India",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Pizza",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Burgers",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Briyani",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Rolls",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Ice-cream",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Burgers",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Briyani",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Rolls",
-      img : "./img/north-indian.avif"
-    },
-    {
-      name: "Ice-cream",
-      img : "./img/north-indian.avif"
-    },
-  ];
+  const totalBoxWidth = 212;
+  const totalParentWidth = 8*212;
 
-  const totalItemWidth = itemWidth + gap;
-  const totalWidth = foodCartArray.length * totalItemWidth;
+  console.log(totalParentWidth)
 
-  const nextNow = () => {
-    setScrollPosition((prevPosition) => {
-      let newPosition = prevPosition + totalItemWidth;
-      if (prevPosition >= totalWidth - totalItemWidth * 3) {
-        return (newPosition = 0);
-      }
-      return newPosition;
-    });
-  };
-
-  const prevNow = () => {
-    if (scrollPosition > 0) {
-      setScrollPosition((prevPosition) => {
-        let newPosition = prevPosition - totalItemWidth;
-        return newPosition;
-      });
+  const nextSlide = () =>{
+    setBoxPosition((prev)=>{
+      return prev + totalBoxWidth;
+    })
+    if(boxPosition > (totalParentWidth-900)){
+      setBoxPosition(0)
     }
-  };
-//   margin : 0px auto;
+  }
+  console.log(boxPosition)
+  const prevSlide = () =>{
+    setBoxPosition((prev)=>{
+      return prev - totalBoxWidth;
+    })
+    if(boxPosition < 0){
+      setBoxPosition(0)
+    }
+  }
   return (
-    <section className="w-[1100px] mx-auto my-10">
-        <div className="flex justify-between">
+    <>
+      <div>
+        <div className="flex justify-between my-10">
+          <h2>What's in your mind</h2>
           <div>
-            <h2 className="mr-4 inline-block w-fit text-3xl font-semibold">
-              Get Best <span className="text-gray-600">Services</span>
-            </h2>
-            <span className="font-semibold">See All</span>
+            <button onClick={prevSlide} className="border p-2 rounded cursor-pointer mr-2">prev</button>
+            <button onClick={nextSlide} className="border p-2 rounded cursor-pointer">next</button>
           </div>
-          <div className="flex items-center gap-3">
-            {scrollPosition !== 0 ? (
-              <div
-                onClick={prevNow}
-                className="cursor-pointer rounded-full border bg-gray-600 p-2"
-              >
-                <FaAngleLeft fontSize="25px" />
-              </div>
-            ) : (
-              ""
-            )}
-            <div
-              onClick={nextNow}
-              className="cursor-pointer rounded-full border bg-gray-600 p-2"
-            >
-              <FaAngleRight fontSize="25px" />
+        </div>
+        
+        <div className="overflow-hidden">
+          <div className={`flex transform gap-3 duration-1000`} style={{transform : `translateX(-${boxPosition}px)`}}>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
+            </div>
+            <div className="w-[200px] border shrink-0">
+              <img src="./img/north-indian.avif" alt="" />
+              <p>North indian</p>
             </div>
           </div>
         </div>
-        <div className={`mt-5 overflow-hidden`}>
-          <div
-            className="flex gap-5 transition-transform duration-200 ease-linear"
-            style={{ transform: `translateX(-${scrollPosition}px)` }}
-          >
-            {foodCartArray.map(
-                (item, index)=>{
-                    return (
-                        <div key={index} className="shrink-0">
-                            <img src={item.img} alt="" width={150}/>
-                            <div>{item.name}</div>
-                        </div>
-                    )
-                }
-            )}
-          </div>
-        </div>
-    </section>
+      </div>
+    </>
   );
 };
 
