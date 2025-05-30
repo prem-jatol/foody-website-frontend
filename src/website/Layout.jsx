@@ -7,7 +7,7 @@ const Layout = () => {
     return (
         <>
             <Header />
-            <main className='w-[900px] border mx-auto h-[600px]'>
+            <main className='w-[900px] border mx-auto min-h-[600px] h-fit'>
                 <Outlet />
             </main>
             <Footer />
