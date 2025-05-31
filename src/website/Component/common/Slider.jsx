@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import FoodBox from "./FoodBox";
 
 const Slider = ({ data, topResto }) => {
   const [boxPosition, setBoxPosition] = useState(0);
@@ -52,19 +52,7 @@ const Slider = ({ data, topResto }) => {
           {data.map((data, indx) => {
             return topResto === true ? (
               <>
-                <div className="w-[300px] border shrink-0 rounded-lg transform hover:scale-90 duration-100">
-                  <img
-                    src={data.img}
-                    alt=""
-                    className="w-full h-[200px] rounded-lg"
-                  />
-                  <div>{data.title}</div>
-                  <div className="flex gap-2">
-                    <FaStar /> <span>{data.rating}</span>
-                    <span>{data.timing}min</span>
-                  </div>
-                  <p className="text-gray-600">{data.subText}</p>
-                </div>
+                <FoodBox key={indx} img={data.img} title={data.title} timing = {data.timing} rating={data.rating} subText={data.subText} />
               </>
             ) : (
               <div key={indx} className="w-[200px] border shrink-0">

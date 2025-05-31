@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './website/Layout';
 import Home from './website/Home';
 import SwiggyCorporate from './website/SwiggyCorporate';
+import SignIn from './website/Component/common/SignIn';
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -19,6 +20,10 @@ const App = () => {
           element: <SwiggyCorporate />
         }
       ]
+    },
+    {
+      path: '/sign-in',
+      element: <SignIn />
     }
   ])
   return (
