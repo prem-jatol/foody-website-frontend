@@ -4,6 +4,8 @@ import Layout from './website/Layout';
 import Home from './website/Home';
 import SwiggyCorporate from './website/SwiggyCorporate';
 import SignIn from './website/Component/common/SignIn';
+import Login from './website/Component/common/Login';
+import Profile from './website/Component/Profile';
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -24,6 +26,14 @@ const App = () => {
     {
       path: '/sign-in',
       element: <SignIn />
+    },
+    {
+      path: '/login',
+      element: <Login />
+    },
+    {
+      path: '/profile/:id',
+      element: <Profile />
     }
   ])
   return (

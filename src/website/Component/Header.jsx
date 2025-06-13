@@ -2,7 +2,9 @@ import React from 'react';
 import { FaChevronDown } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({user}) => {
+    // console.log(user);
+    
     return (
         <div className='flex justify-between px-20 h-[80px] shadow-lg shadow-b'>
             <div className='flex items-center gap-8'>
@@ -20,7 +22,7 @@ const Header = () => {
                     <span className='absolute -top-1 -right-5 text-[9px] text-orange-600 font-bold'>NEW</span>
                 </div>
                 <div className='hover:text-orange-600 cursor-pointer'>Help</div>
-                <Link to="/sign-in"><button className='hover:text-orange-600 cursor-pointer'>Sign in</button></Link>
+                {user ? '' : <Link to="/sign-in"><button className='hover:text-orange-600 cursor-pointer'>Sign in</button></Link>}
                 <div className='hover:text-orange-600 cursor-pointer'>Cart</div>
             </div>
         </div>

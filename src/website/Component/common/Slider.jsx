@@ -6,7 +6,7 @@ const Slider = ({ data, topResto }) => {
 
   const totalBoxWidth = topResto ? 312 : 212;
   const totalParentWidth = data.length * 212;
-  console.log(totalParentWidth);
+  // console.log(totalParentWidth);
 
   const nextSlide = () => {
     setBoxPosition((prev) => {
