@@ -32,7 +32,7 @@ const App = () => {
       element: <Login />
     },
     {
-      path: '/profile/:id',
+      path: '/profile/:id?',
       element: <Profile />
     }
   ])

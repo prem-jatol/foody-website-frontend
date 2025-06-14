@@ -28,7 +28,7 @@ const Login = () => {
       .then((success) => {
         if (success.data.status === 1) {
           localStorage.setItem("userToken", success.data.token);
-          localStorage.setItem("id", success.data.user);
+          localStorage.setItem("id", success.data.user._id);
           alert(success.data.msg)
           navigation("/")
         }

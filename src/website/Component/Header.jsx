@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaChevronDown } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const Header = ({user}) => {
     // console.log(user);
+    const [id, setId] = useState(null)
+      useEffect(() => {
+        const id = localStorage.getItem("id");
+        setId(id);
+      }, []);
     
     return (
         <div className='flex justify-between px-20 h-[80px] shadow-lg shadow-b'>
@@ -24,6 +29,7 @@ const Header = ({user}) => {
                 <div className='hover:text-orange-600 cursor-pointer'>Help</div>
                 {user ? '' : <Link to="/sign-in"><button className='hover:text-orange-600 cursor-pointer'>Sign in</button></Link>}
                 <div className='hover:text-orange-600 cursor-pointer'>Cart</div>
+                <Link to={`/profile/${id}`}><div className='hover:text-orange-600 cursor-pointer'>Profile</div></Link>
             </div>
         </div>
     );
