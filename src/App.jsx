@@ -23,6 +23,20 @@ const App = () => {
         }
       ]
     },
+    // {
+    //   path: "/dashboard",
+    //   element: <Layout />,
+    //   children: [
+    //     {
+    //       path: '',
+    //       element: <DashboardOverview />
+    //     },
+    //     {
+    //       path: 'swiggy-corporate',
+    //       element: <Prduct />
+    //     }
+    //   ]
+    // },
     {
       path: '/sign-in',
       element: <SignIn />
