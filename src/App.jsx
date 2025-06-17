@@ -1,17 +1,20 @@
 import React, { Children } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './website/Layout';
+import WebsiteLayout from './website/Layout';
 import Home from './website/Home';
 import SwiggyCorporate from './website/SwiggyCorporate';
 import SignIn from './website/Component/common/SignIn';
 import Login from './website/Component/common/Login';
 import Profile from './website/Component/Profile';
+import DashboardLayout from './admin/Layout';
+import Products from './admin/dashboard-components/Products';
+import DashboardOverview from './admin/dashboard-components/DashboardOverview';
 
 const App = () => {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: <WebsiteLayout />,
       children: [
         {
           path: '',
@@ -23,20 +26,20 @@ const App = () => {
         }
       ]
     },
-    // {
-    //   path: "/dashboard",
-    //   element: <Layout />,
-    //   children: [
-    //     {
-    //       path: '',
-    //       element: <DashboardOverview />
-    //     },
-    //     {
-    //       path: 'swiggy-corporate',
-    //       element: <Prduct />
-    //     }
-    //   ]
-    // },
+    {
+      path: "/dashboard/",
+      element: <DashboardLayout />,
+      children: [
+        {
+          path: '',
+          element: <DashboardOverview />
+        },
+        {
+          path: 'products',
+          element: <Products />
+        }
+      ]
+    },
     {
       path: '/sign-in',
       element: <SignIn />
