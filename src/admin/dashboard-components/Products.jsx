@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 
 const Products = () => {
   const [formData, setFormData] = useState({
@@ -17,13 +17,27 @@ const Products = () => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    
+    // const formDatas = new FormData();
+
+    // formDatas.append("title", e.target.title.value);
+    // formDatas.append("timeframe", e.target.timeframe.value);
+    // formDatas.append("subtext", e.target.subtext.vlaue);
+    // formDatas.append("discount", e.target.discount.value);
+    // formDatas.append("title", formData.title);
+    // formDatas.append("image", e.target.image.files[0]);
+    // console.log(formData);
+
     try {
-      const response = await axios.post("http://localhost:3000/product/add-product", formData);
-      console.log("Data saved:", response.data);
+      const response = await axios.post(
+        "http://localhost:3000/product/add-product",
+        formData
+      );
+      if (response.data.status === 1) {
+        alert("product added!");
+        console.log("Data saved:", response.data);
+      }
     } catch (err) {
       console.error("Error submitting data:", err);
     }
@@ -32,8 +46,7 @@ const Products = () => {
   return (
     <div className="max-w-xl mx-auto p-8 mt-10 bg-white rounded-2xl shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Add Product</h2>
-      <form onSubmit={handleSubmit} className="space-y-5">
-
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-5">
         {/* Title */}
         <div>
           <label className="block mb-1 font-medium">Title</label>
@@ -47,6 +60,8 @@ const Products = () => {
             placeholder="Enter product title"
           />
         </div>
+
+        <input name = "image" type="file" />
 
         {/* Timeframe */}
         <div>
@@ -97,7 +112,6 @@ const Products = () => {
         >
           Submit
         </button>
-
       </form>
     </div>
   );
